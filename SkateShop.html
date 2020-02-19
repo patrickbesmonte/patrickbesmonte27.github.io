@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="SkateShop.css">
+    <title>Sample Website</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script type="text/javascript" src="SkateShop.json"></script>
+	<script type="text/javascript" src="SkateShop.js"></script>
+
+	<script>
+
+		$("document").ready(function(){
+			
+			var tData = JSON.parse(data);
+			
+			
+			for(var i = 0; i < tData.product.length; i++){
+				document.getElementById("flex-container").innerHTML += '<li class="cards__item"> <div class="card"> <div class="card__image" style="background-image:url(images/'+tData.product[i].image+')"></div><div class="card__content"><div class="card__title">'+tData.product[i].name+'</div><p class="card__text">$'+tData.product[i].price+'</p><a href="#" data-name="'+tData.product[i].name+'" data-price="'+tData.product[i].price+'" class="add-to-cart btn btn-primary">Add to cart</a></div></div></li>';
+			} 
+
+			
+			for(var a = 0; a < tData.product.length; a++){
+				document.getElementById("slider").innerHTML += '<div class="mySlides fade"><div class="numbertext">1 / 3</div><img src="images/'+tData.product[a].image+'" ><div class="text">Caption Text</div></div>';
+			}
+			
+			
+			var modal = document.getElementById("cart");
+
+			
+			var btn = document.getElementById("myBtn");
+
+			
+			var span = document.getElementsByClassName("close")[0];
+
+			
+			btn.onclick = function() {
+			modal.style.display = "block";
+			}
+
+		
+			span.onclick = function() {
+			modal.style.display = "none";
+			}
+
+			
+			window.onclick = function(event) {
+			if (event.target == modal) {
+			modal.style.display = "none";
+			}
+			}
+			
+			
+		});
+		
+	</script>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="image">
+          <img src="bg6.jpeg" width="120" height="50">
+        </div>
+        <a href="SkateShop.html">Home</a>
+    
+        <div class="dropdown">
+          <button class="dropbtn">Our Product
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="#">Skateboards</a>
+            <a href="#">Board</a>
+            <a href="#">Wheels</a>
+            <a href="#">Trucks</a>
+          </div>
+        </div>
+          <a href="#news">Contact</a>
+          <div class="row">
+            <div class="col">
+              <button type="button" class="btn btn-primary" id="myBtn" data-target="#cart">Cart (<span class="total-count"></span>)</button><button class="clear-cart btn btn-danger">Clear Cart</button></div></i>
+        </div>    
+      </div>
+
+ <!-- Carousel -->
+ <div class="slideshow-container">
+
+        
+    <div class="mySlides fade">
+      <div class="numbertext">1 / 3</div>
+      <img src="sk.jpeg" style="width:50%">
+    </div>
+  
+    <div class="mySlides fade">
+      <div class="numbertext">2 / 3</div>
+      <img src="sk2.jpeg" style="width:50%">
+    </div>
+  
+    <div class="mySlides fade">
+      <div class="numbertext">3 / 3</div>
+      <img src="sk3.jpeg" style="width:50%">
+    </div>
+  
+    
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  </div>
+  <br>
+  
+  
+  <div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+  </div><hr>
+
+
+ <dvi class="container">
+    <div class="rows">
+      <div class="colu">
+        <img src="back.jpeg" width="50%"><img src="skate.jpeg" width="50%">
+       </div>
+    </div> 
+ </div>
+ <hr>
+ 
+
+<ul class="cards" id="flex-container">
+ 
+</ul>
+
+
+
+	
+ <!-- Modal -->
+
+<div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+        
+      </div>
+      <div class="modal-body">
+        <table class="show-cart table">
+          
+        </table>
+        <div>Total price: $<span class="total-cart"></span></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary close" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Order now</button>
+      </div>
+    </div>
+  </div>
+  </div>
+
+ <div class="containers">
+
+ </div>
+  
+
+</body>
+<script>
+//slider
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+	  slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+	  dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+</script>
+</html>
